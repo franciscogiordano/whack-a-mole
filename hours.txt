@@ -1,0 +1,1 @@
+I spent around 5 hours to finish. I took some more time because it was the my first time actually using ngRx. I hope it's ok!
