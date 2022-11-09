@@ -1,0 +1,61 @@
+.game-core {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #d3d3d3;
+
+    &__container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+
+      &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: stretch;
+        align-content: space-around;
+        width: 70%;
+
+        .line-break {
+          width: 100%;
+        }
+
+        .circle--solid {
+          display: flex;
+          height: 7em;
+          width: 7em;
+          background-color: black;
+          border-radius: 50%;
+        }
+        .circle--outlined {
+          display: flex;
+          box-sizing: border-box;
+          height: 7em;
+          width: 7em;
+          background-color: #d3d3d3;
+          border-radius: 50%;
+          border: 1px black solid;
+        }
+      }
+    }
+  }
+
+  &__countdown {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 10vh;
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="game-core">
+  <div class="game-core__main">
+    <div *ngIf="activeGame" class="game-core__main__container">
+      <div class="game-core__main__container__row">
+        <ng-container *ngFor="let mole of moles; let i = index">
+          <span
+            *ngIf="{
+              active: mole.active | async,
+              whacked: mole.whacked | async
+            } as mole"
+            (click)="hitMole(mole.active, i)"
+            [ngClass]="
+              mole.active && !mole.whacked
+                ? 'circle--solid'
+                : 'circle--outlined'
+            "
+          ></span>
+          <div *ngIf="i === 2" class="line-break"></div>
+        </ng-container>
+      </div>
+    </div>
+    <button *ngIf="!activeGame" (click)="startGame()">Start</button>
+  </div>
+  <div class="game-core__countdown">
+    <div>Time left: {{ gameDuration | async }}s</div>
+  </div>
+</div>

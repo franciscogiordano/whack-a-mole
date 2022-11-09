@@ -1,0 +1,12 @@
+.score-bar {
+  display: flex;
+  flex-direction: column;
+  min-height: 10vh;
+
+  h1,
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0.3%;
+  }
+}
