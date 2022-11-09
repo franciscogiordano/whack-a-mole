@@ -15,7 +15,7 @@ import {
   tap,
 } from 'rxjs';
 import { State } from 'src/app/state/app.state';
-import { updateScore } from './state/game-core.actions';
+import { updateMaxScore, updateScore } from './state/game-core.actions';
 import { selectScore } from './state/game-core.selectors';
 
 export interface Mole {
@@ -136,6 +136,12 @@ export class GameCoreComponent implements OnInit {
   }
 
   endGame() {
+    this.score$
+      .pipe(take(1))
+      .subscribe((value) =>
+        this.store.dispatch(updateMaxScore({ score: value }))
+      );
+
     this.activeGame = false;
     this.moles = [];
   }

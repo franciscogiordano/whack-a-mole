@@ -8,3 +8,8 @@ export const selectScore = createSelector(
   selectGameCore,
   (state: GameCoreState) => state?.score
 );
+
+export const maxScore = createSelector(
+  selectGameCore,
+  (state: GameCoreState) => state?.maxScore
+);
