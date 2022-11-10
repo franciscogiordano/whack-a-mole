@@ -20,7 +20,6 @@ import { selectScore } from './state/game-core.selectors';
 
 export interface Mole {
   active: Observable<boolean>;
-  displayTime: Observable<number>;
   whacked: BehaviorSubject<boolean>;
 }
 
@@ -60,7 +59,6 @@ export class GameCoreComponent implements OnInit {
       this.moles.push({
         active: this.getStateChangeAction$(i),
         whacked: this.getWhackedSubject(),
-        displayTime: this.getInterval(),
       });
     }
   }
