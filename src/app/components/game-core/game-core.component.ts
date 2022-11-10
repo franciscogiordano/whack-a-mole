@@ -38,9 +38,9 @@ export class GameCoreComponent implements OnInit {
   moles: Mole[] = [];
   score$!: Observable<number>;
   activeGame: boolean = false;
-  gameOver: boolean = false;
   gameDuration: Observable<number> = of(30);
   counterInitState: number = 29;
+  buttonTxt: string = 'Start';
 
   constructor(private store: Store<State>) {}
 
@@ -143,6 +143,7 @@ export class GameCoreComponent implements OnInit {
       );
 
     this.activeGame = false;
+    this.buttonTxt = 'Try again';
     this.moles = [];
   }
 

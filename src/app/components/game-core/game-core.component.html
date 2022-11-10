@@ -19,7 +19,7 @@
         </ng-container>
       </div>
     </div>
-    <button *ngIf="!activeGame" (click)="startGame()">Start</button>
+    <button *ngIf="!activeGame" (click)="startGame()">{{ buttonTxt }}</button>
   </div>
   <div class="game-core__countdown">
     <div>Time left: {{ gameDuration | async }}s</div>
