@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   BehaviorSubject,
+  concatMap,
+  defer,
+  delay,
+  delayWhen,
   filter,
   finalize,
   interval,
@@ -13,6 +17,7 @@ import {
   switchMap,
   take,
   tap,
+  timer,
 } from 'rxjs';
 import { State } from 'src/app/state/app.state';
 import { updateMaxScore, updateScore } from './state/game-core.actions';
@@ -32,6 +37,7 @@ export enum ScoreCommands {
   selector: 'app-game-core',
   templateUrl: './game-core.component.html',
   styleUrls: ['./game-core.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameCoreComponent implements OnInit {
   moles: Mole[] = [];
@@ -71,7 +77,10 @@ export class GameCoreComponent implements OnInit {
   }
 
   getInterval() {
-    return interval(this.getRandomNumber(1000, 3000));
+    return interval(1000).pipe(
+      map(() => this.getRandomNumber(1000, 3000)),
+      concatMap((number) => timer(number))
+    );
   }
 
   getRandomNumber(min: number, max: number) {
