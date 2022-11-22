@@ -1,4 +1,10 @@
 <div class="score-bar">
   <h1>Score: {{ score$ | async }}</h1>
-  <h4>Highest score: {{ maxScore$ | async }}</h4>
+  <h4>
+    Highest score:
+    <ng-container *ngIf="maxScore$ | async as maxScore; else initScore">
+      {{ maxScore }}</ng-container
+    >
+    <ng-template #initScore> 0 </ng-template>
+  </h4>
 </div>

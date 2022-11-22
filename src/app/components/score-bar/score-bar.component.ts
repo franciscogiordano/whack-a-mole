@@ -14,7 +14,7 @@ export class ScoreBarComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   score$!: Observable<number>;
-  maxScore$!: Observable<number>;
+  maxScore$!: Observable<number | null>;
 
   ngOnInit(): void {
     this.score$ = this.store.select(selectScore);

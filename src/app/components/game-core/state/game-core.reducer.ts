@@ -3,12 +3,12 @@ import { updateMaxScore, updateScore } from './game-core.actions';
 
 export interface GameCoreState {
   score: number;
-  maxScore: number;
+  maxScore: number | null;
 }
 
 export const initialState: GameCoreState = {
   score: 0,
-  maxScore: 0,
+  maxScore: null,
 };
 
 export const gameCoreReducer = createReducer<GameCoreState>(
@@ -20,7 +20,7 @@ export const gameCoreReducer = createReducer<GameCoreState>(
     };
   }),
   on(updateMaxScore, (state, action): GameCoreState => {
-    if (state.maxScore >= action.score) {
+    if (state.maxScore && state.maxScore >= action.score) {
       return state;
     }
     return {

@@ -70,10 +70,19 @@ export class GameCoreComponent implements OnInit {
   }
 
   hitMole(isMoleActive: boolean | null, moleIndex: number) {
-    if (isMoleActive) {
-      this.updateStateScore(ScoreCommands.INCREASE).subscribe();
-      this.moles[moleIndex].whacked.next(true);
+    if (!isMoleActive) {
+      return;
     }
+    this.moles[moleIndex].whacked
+      .pipe(
+        take(1),
+        filter((isWacked) => !isWacked),
+        switchMap(() => {
+          return this.updateStateScore(ScoreCommands.INCREASE);
+        }),
+        tap(() => this.moles[moleIndex].whacked.next(true))
+      )
+      .subscribe();
   }
 
   getInterval() {
